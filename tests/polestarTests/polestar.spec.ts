@@ -1,8 +1,11 @@
-import test, { expect } from "@playwright/test";
+import test, { chromium, expect } from "@playwright/test";
 
 
-    test('Verify the home page and title', async({page}) => {
-        //test.setTimeout(90000);
+    test('Verify the home page and title', async() => {
+        test.setTimeout(90000);
+        const browser = await chromium.launch({channel:"chrome", headless:true})
+        const browserContext = await browser.newContext();
+        const page = await browserContext.newPage();
         await page.goto("https://www.polestar.com/global/developer/get-started/");
         await page.waitForLoadState('load');
         await page.getByRole('button', { name: 'Accept all' }).click();
@@ -11,8 +14,11 @@ import test, { expect } from "@playwright/test";
         expect(title).toBe("Polestar – Electric cars | Polestar");
     });
 
-    test('Verify the user allowed to Subscribe Polestar', async({page}) => {
+    test('Verify the user allowed to Subscribe Polestar', async() => {
         test.setTimeout(90000);
+        const browser = await chromium.launch({channel:"chrome", headless:true})
+        const browserContext = await browser.newContext();
+        const page = await browserContext.newPage();
         await page.goto("https://www.polestar.com/global/developer/get-started/");
         await page.waitForLoadState('load');
         await page.getByRole('button', { name: 'Accept all' }).click();
@@ -26,8 +32,11 @@ import test, { expect } from "@playwright/test";
         await page.getByRole('button', { name: 'Subscribe' }).click();
     });
 
-    test('Verify footer links', async({page}) => {
+    test('Verify footer links', async() => {
         test.setTimeout(90000);
+        const browser = await chromium.launch({channel:"chrome", headless:true})
+        const browserContext = await browser.newContext();
+        const page = await browserContext.newPage();
         await page.goto("https://www.polestar.com/global/developer/get-started/");
         await page.waitForLoadState('load');
         await page.getByRole('button', { name: 'Accept all' }).click();
